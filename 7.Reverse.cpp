@@ -23,6 +23,7 @@ public:
             ans = ans * 10 + digit; // Append the digit to the reversed number
             x = x / 10; // Remove the last digit from x
         }
+        
         return ans; // Return the reversed number
     }
 };
