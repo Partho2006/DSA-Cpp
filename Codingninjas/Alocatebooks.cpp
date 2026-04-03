@@ -73,3 +73,5 @@ int allocateBooks(vector<int> arr, int n, int m) {
     }
     return ans;
 }
+
+// https://www.youtube.com/watch?v=YTTdLgyqOLY
