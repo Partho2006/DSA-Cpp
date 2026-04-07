@@ -17,6 +17,8 @@
 // rotate 1 steps to the right: [99,-1,-100,3]
 // rotate 2 steps to the right: [3,99,-1,-100]
 
+// https://leetcode.com/problems/rotate-array/description/
+
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
