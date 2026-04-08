@@ -21,6 +21,8 @@
 // Explanation: [1,2,3] is the original sorted array.
 // You can rotate the array by x = 0 positions (i.e. no rotation) to make nums.
 
+// https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
+
 class Solution {
 public:
     bool check(vector<int>& nums) {
@@ -41,5 +43,3 @@ public:
         return c <= 1;
     }
 };
-
-// https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
