@@ -40,3 +40,9 @@ public:
         return k;       
     }
 };  
+
+// | Allowed duplicates | Condition            |
+// | ------------------ | -------------------- |
+// | 1 (unique only)    | nums[i] != nums[k-1] |
+// | 2 (this problem)   | nums[i] != nums[k-2] |
+// | k duplicates       | nums[i] != nums[k-k] |
