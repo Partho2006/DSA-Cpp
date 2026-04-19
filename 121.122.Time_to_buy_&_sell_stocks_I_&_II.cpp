@@ -42,7 +42,7 @@ public:
 // Kadane's Algorithm iterates through the array, updating max_current based on the current element's value and deciding whether to start a new subarray.
 // The stock profit approach iterates through the prices array, updating buy when a lower price is encountered and treating the difference between the current price and buy as a potential profit.
 
-_______________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________
 
 // 122. Best Time to Buy and Sell Stock II
 
