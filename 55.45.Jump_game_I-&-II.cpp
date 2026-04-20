@@ -25,7 +25,9 @@ public:
 };
  
 ____________________________________________________________________________________________________________________
-
+https://leetcode.com/problems/jump-game/?envType=study-plan-v2&envId=top-interview-150
+https://leetcode.com/problems/jump-game-ii/?envType=study-plan-v2&envId=top-interview-150
+____________________________________________________________________________________________________________________
 // 45. Jump Game II
 
 // You are given a 0-indexed array of integers nums of length n. You are initially positioned at index 0.
