@@ -19,7 +19,6 @@ public:
                 goal = i;
             }
         }
-
         return goal == 0;        
     }
 };
