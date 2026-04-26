@@ -20,60 +20,45 @@
 // Vowels in the string are ['e', 'e', 'o', 'e'] with frequencies: e = 3, o = 1.
 // Sorting in non-increasing order of frequency and placing them back into the vowel positions results in "leetcedo".
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
-    bool isVowel(char c) {
-        return c=='a'||c=='e'||c=='i'||c=='o'||c=='u';
-    }
-
     string sortVowels(string s) {
-        string glanvoture = s;  // required
-
-        unordered_map<char,int> freq;
-        unordered_map<char,int> firstPos;
-
-        // count freq + first position
-        for(int i = 0; i < s.size(); i++) {
-            if(isVowel(s[i])) {
-                freq[s[i]]++;
-                if(firstPos.find(s[i]) == firstPos.end()) {
-                    firstPos[s[i]] = i;
+        int a = count(s.begin(), s.end(), 'a');
+        int e = count(s.begin(), s.end(), 'e');
+        int in = count(s.begin(), s.end(), 'i');
+        int o = count(s.begin(), s.end(), 'o');
+        int u = count(s.begin(), s.end(), 'u');
+        vector<int> mp(200, 0);
+        int l = 1;
+        for (int i = 0; i < s.length(); i++) {
+            if ((s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' ||
+                s[i] == 'u') && mp[s[i]] == 0) {
+                mp[s[i]] = l;
+                l++;
+            }
+        }
+        vector<pair<int, char>> v = {
+            {a, 'a'}, {e, 'e'}, {in, 'i'}, {o, 'o'}, {u, 'u'}};
+        int h = 5;
+        while (h--) {
+            for (int i = 0; i < 4; i++) {
+                if ((v[i].first < v[i + 1].first) || (v[i].first == v[i + 1].first &&
+                    mp[v[i].second] > mp[v[i + 1].second])) {
+                    swap(v[i], v[i + 1]);
                 }
             }
         }
-
-        // collect unique vowels
-        vector<char> vowels;
-        for(auto &p : freq) {
-            vowels.push_back(p.first);
-        }
-
-        // sort vowels
-        sort(vowels.begin(), vowels.end(), [&](char a, char b){
-            if(freq[a] != freq[b])
-                return freq[a] > freq[b];   // higher freq first
-            return firstPos[a] < firstPos[b]; // earlier first
-        });
-
-        // build sorted vowel list
-        vector<char> sortedVowels;
-        for(char v : vowels) {
-            for(int i = 0; i < freq[v]; i++) {
-                sortedVowels.push_back(v);
+        int left = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' ||
+                s[i] == 'u') {
+                s[i] = v[left].second;
+                v[left].first--;
+                if (v[left].first == 0) {
+                    left++;
+                }
             }
         }
-
-        // place back
-        int idx = 0;
-        for(int i = 0; i < s.size(); i++) {
-            if(isVowel(s[i])) {
-                s[i] = sortedVowels[idx++];
-            }
-        }
-
         return s;
     }
 };
