@@ -25,33 +25,21 @@
 class Solution {
 public:
     vector<int> findValidElements(vector<int>& nums) {
+        vector<int> res;
         int n = nums.size();
-        vector<int> result;
+        vector<int> mx(n, 0), mn(n, 0);
+        
+        for (int i = 1; i < n; i++)
+            mx[i] = max(mx[i-1], nums[i-1]);
+                
+        for (int i = n-2; i >=0; i--)
+            mn[i] = max(mn[i+1], nums[i+1]);
 
-        vector<int> leftMax(n), rightMax(n);
-
-        // build left max
-        leftMax[0] = nums[0];
-        for(int i = 1; i < n; i++) {
-            leftMax[i] = max(leftMax[i-1], nums[i]);
+        for (int i = 0; i < n; i++){
+            if (nums[i] > mx[i] || nums[i] > mn[i])
+                res.push_back(nums[i]);
         }
-
-        // build right max
-        rightMax[n-1] = nums[n-1];
-        for(int i = n-2; i >= 0; i--) {
-            rightMax[i] = max(rightMax[i+1], nums[i]);
-        }
-
-        // check valid elements
-        for(int i = 0; i < n; i++) {
-            if(i == 0 || i == n-1 ||
-               nums[i] > leftMax[i-1] ||
-               nums[i] > rightMax[i+1]) {
-                result.push_back(nums[i]);
-            }
-        }
-
-        return result;
+        return res;
     }
 };
 
