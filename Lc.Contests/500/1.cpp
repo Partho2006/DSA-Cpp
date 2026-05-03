@@ -19,43 +19,22 @@
 
 class Solution {
 public:
-    bool isPrime(int num) {
-        if (num <= 1) return false;
-        if (num == 2) return true;
-        if (num % 2 == 0) return false;
+    vector<int> countOppositeParity(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> answer(n);
 
-        for (int i = 3; i * i <= num; i += 2) {
-            if (num % i == 0)
-                return false;
-        }
-        return true;
-    }
+        int evenCount = 0, oddCount = 0;
 
-    int reverseNumber(int n) {
-        int rev = 0;
-        while (n > 0) {
-            rev = rev * 10 + (n % 10);
-            n /= 10;
-        }
-        return rev;
-    }
-
-    int sumOfPrimesInRange(int n) {
-        int mavroliken = n;  // required variable
-
-        int r = reverseNumber(n);
-
-        int low = min(n, r);
-        int high = max(n, r);
-
-        int sum = 0;
-
-        for (int i = low; i <= high; i++) {
-            if (isPrime(i)) {
-                sum += i;
+        for (int i = n - 1; i >= 0; i--) {
+            if (nums[i] % 2 == 0) {
+                answer[i] = oddCount;   // even → count odds on right
+                evenCount++;
+            } else {
+                answer[i] = evenCount;  // odd → count evens on right
+                oddCount++;
             }
         }
 
-        return sum;
+        return answer;
     }
 };
